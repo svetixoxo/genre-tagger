@@ -28,6 +28,10 @@ Zudem wird (für das Fallback) ein kostenloser [Last.fm-API-Key](https://www.las
 ```python
 LASTFM_KEY = "dein_api_key"
 ```
+4. Mailadresse für MusicBrainz-Abfragen angeben:
+```python
+musicbrainzngs.set_useragent("genre-tagger", "1.0", "deine@email.dev")
+```
 
 ## Konfiguration
 Am Anfang von `tag_genres.py` diese Variablen an das eigene Setup anpassen:
