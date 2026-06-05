@@ -1,4 +1,4 @@
-# flac-genre-tagger
+# genre-tagger
 Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert nach einer eigenen Whitelist. Erstellt mithilfe von Anthropic Claude.
 
 ## Hintergrund
