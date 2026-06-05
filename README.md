@@ -56,11 +56,11 @@ python tag_genres.py --force
 
 Beispiel:
 ```
-Rock
-Metal
-Metalcore
-Post-Hardcore
-Doom Metal
+Alternative Metal
+Dark Wave
+Gothic Rock
+Industrial
+Symphonic Metal
 ...
 ```
 
