@@ -13,7 +13,7 @@ Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert 
 - Schreibt jedes Genre als **separaten Vorbis Comment** (z.B. `GENRE=Rock`, `GENRE=Metal`)
 - **Überschreibt keine** vorhandenen gültigen Genres — ergänzt nur bis zum konfigurierten Maximum
 - Führt einen **Index** bereits verarbeiteter Alben, um diese beim nächsten Durchlauf zu überspringen
-- `--force` Flag um alle Alben unabhängig vom Index neu zu verarbeiten
+- `--force`-Flag, um alle Alben unabhängig vom Index neu zu verarbeiten
 
 ## Voraussetzungen
 ```zsh
