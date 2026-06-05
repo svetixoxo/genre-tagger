@@ -79,6 +79,29 @@ Standardmäßig werden Genres pro Album vergeben. Wer stattdessen jeden Track ei
 2. `process_album()` zu `process_track()` umbenennen — `artist` und `album` aus dem jeweiligen Track lesen statt vom ersten Track des Albums
 3. In `resolve_album_genres()` die Last.fm-Abfrage von `get_album()` auf `get_track()` umstellen
 
+## Andere Formate (ungetestet)
+Das Script ist auf FLAC ausgelegt. Wer auch andere Formate unterstützen möchte, muss zwei Stellen anpassen:
+
+**1. Datei-Suche** in `group_by_album()`:
+```python
+# vorher
+if f.lower().endswith(".flac"):
+
+# nachher
+if f.lower().endswith((".flac", ".mp3", ".ogg", ".opus")):
+```
+
+**2. Datei lesen/schreiben** – `FLAC()` durch `mutagen.File()` ersetzen, das erkennt das Format automatisch:
+```python
+from mutagen import File
+
+audio = File(filepath, easy=True)
+```
+
+Mit `easy=True` funktioniert der `genre`-Tag bei allen Formaten gleich, kein formatspezifischer Code nötig.
+
+> **Hinweis:** Bei MP3 mit ID3v2.3 funktionieren Multi-Tags nicht zuverlässig. Es wird empfohlen, ID3v2.4 zu verwenden.
+
 ## Index
 Verarbeitete Alben werden in `~/.genre_tagger_done.txt` gespeichert (eine Release-Group-ID oder ein Ordnerpfad pro Zeile). Die Datei löschen oder `--force` nutzen, um alles neu zu verarbeiten.
 
