@@ -2,7 +2,7 @@
 Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert nach einer eigenen Whitelist. Erstellt mithilfe von Anthropic Claude.
 
 ## Hintergrund
-Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres, aber nur wenn die Dateien sauber getaggt sind. Tools wie MusicBrainz Picard schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments. Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch.
+Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres, aber nur, wenn die Dateien sauber getaggt sind. Tools wie MusicBrainz Picard schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments. Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch.
 
 Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert sie gegen eine eigene Whitelist und schreibt sie als separate Tags in die Dateien.
 
