@@ -1,5 +1,5 @@
 # genre-tagger
-Taggt Audiodateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert nach einer eigenen Whitelist. Erstellt mithilfe von Anthropic Claude.
+Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert nach einer eigenen Whitelist. Erstellt mithilfe von Anthropic Claude.
 
 ## Hintergrund
 Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres, aber nur, wenn die Dateien sauber getaggt sind. Tools wie [MusicBrainz Picard](https://github.com/metabrainz/picard) schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments (dies ließe sich in Picard zwar umstellen, allerdings funktionierte das bei mir nicht zuverlässig). Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch, bei Last.fm herrscht in der Regel großes Chaos.
@@ -34,7 +34,7 @@ Zudem wird (für das Fallback) ein kostenloser [Last.fm-API-Key](https://www.las
 2. `genres_whitelist.txt` in den Musikbibliothek-Ordner legen (oder den Pfad im Skript anpassen)
 3. Last.fm-API-Key direkt in `tag_genres.py` eintragen:
 ```python
-LASTFM_KEY = "dein_api_key"
+LASTFM_KEY = "DEIN_API_KEY"
 ```
 4. Mailadresse für MusicBrainz-Abfragen angeben:
 ```python
@@ -48,7 +48,6 @@ BIBLIOTHEK    = os.path.expanduser("~/Musik/Bibliothek")  # Pfad zur Musikbiblio
 WHITELIST_TXT = os.path.expanduser("~/Musik/Bibliothek/genres_whitelist.txt")
 INDEX_FILE    = os.path.expanduser("~/.genre_tagger_done.txt")
 MAX_GENRES    = 3   # Maximale Anzahl Genres pro Album
-FUZZY_CUTOFF  = 0.82  # Ähnlichkeitsschwelle für Fuzzy-Matching (0.0–1.0)
 ```
 
 ## Verwendung
@@ -84,14 +83,14 @@ Symphonic Metal
 ```
 
 ## Fuzzy-Matching
-Wenn ein gefundenes Genre nicht exakt in der Whitelist steht, versucht das Skript automatisch den ähnlichsten Whitelist-Eintrag zu finden. Die Ähnlichkeitsschwelle lässt sich über `FUZZY_CUTOFF` einstellen – höhere Werte bedeuten strengeres Matching.
+Wenn ein gefundenes Genre nicht exakt in der Whitelist steht, prüft das Skript ob es nach Entfernung von Leerzeichen und Bindestrichen einem Whitelist-Eintrag entspricht. Damit werden gezielt nur Schreibweisenvarianten erkannt – keine falschen Treffer durch zu ähnliche, aber inhaltlich verschiedene Genres.
 
 Beispiele:
+- `hip hop` → `Hip-Hop`
+- `metal core` → `Metalcore`
 - `Post Punk` → `Post-Punk`
-- `Hip Hop` → `Hip-Hop`
-- `death metal` → `Death Metal`
 
-Im `--dry-run`-Modus werden alle Fuzzy-Matches mit Ähnlichkeitswert angezeigt.
+Im `--dry-run`-Modus werden alle Fuzzy-Matches angezeigt.
 
 ## Funktionsweise
 1. alle Audiodateien werden nach MusicBrainz-Release-Group-ID gruppiert (Fallback: Ordnerpfad, wenn keine ID vorhanden)
