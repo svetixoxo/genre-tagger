@@ -18,7 +18,6 @@ MAX_GENRES    = 5
 
 if not LASTFM_KEY:
     print("Fehler: LASTFM_KEY-Umgebungsvariable nicht gesetzt.")
-    print("Beispiel: export LASTFM_KEY=deinapikey")
     sys.exit(1)
 
 musicbrainzngs.set_useragent("genre-tagger", "1.0", "deine@email.dev")
