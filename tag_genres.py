@@ -16,7 +16,7 @@ BIBLIOTHEK    = os.path.expanduser("~/Musik/Bibliothek")
 WHITELIST_TXT = os.path.expanduser("~/Musik/Bibliothek/genres_whitelist.txt")
 INDEX_FILE    = os.path.expanduser("~/.genre_tagger_done.txt")
 LASTFM_KEY    = ""  # Last.fm API-Key hier eintragen
-MAX_GENRES    = 3
+MAX_GENRES    = 5
 FUZZY_CUTOFF  = 0.82  # Ähnlichkeitsschwelle für Fuzzy-Matching (0.0–1.0)
 SUPPORTED_EXT = (".flac", ".mp3", ".m4a", ".ogg", ".opus")
 # ──────────────────────────────────────────────────────────────────────────────
