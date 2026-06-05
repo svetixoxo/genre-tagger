@@ -47,7 +47,7 @@ Am Anfang von `tag_genres.py` diese Variablen an das eigene Setup anpassen:
 BIBLIOTHEK    = os.path.expanduser("~/Musik/Bibliothek")  # Pfad zur Musikbibliothek
 WHITELIST_TXT = os.path.expanduser("~/Musik/Bibliothek/genres_whitelist.txt")
 INDEX_FILE    = os.path.expanduser("~/.genre_tagger_done.txt")
-MAX_GENRES    = 3   # Maximale Anzahl Genres pro Album
+MAX_GENRES    = 5   # Maximale Anzahl Genres pro Album
 ```
 
 ## Verwendung
