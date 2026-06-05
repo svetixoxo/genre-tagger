@@ -4,7 +4,7 @@ Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert
 ## Hintergrund
 Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres — aber nur wenn die Dateien sauber getaggt sind. Tools wie MusicBrainz Picard schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments. Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch.
 
-Dieses Script löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert sie gegen eine eigene Whitelist und schreibt sie als separate Tags in die Dateien.
+Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert sie gegen eine eigene Whitelist und schreibt sie als separate Tags in die Dateien.
 
 ## Funktionen
 - Genres werden pro **Album** vergeben (nicht pro Track) für Konsistenz
@@ -23,7 +23,7 @@ Zudem wird (für das Fallback) ein kostenloser [Last.fm-API-Key](https://www.las
 
 ## Einrichtung
 1. Repo klonen und Abhängigkeiten installieren
-2. `genres_whitelist.txt` in den Musikbibliothek-Ordner legen (oder den Pfad im Script anpassen)
+2. `genres_whitelist.txt` in den Musikbibliothek-Ordner legen (oder den Pfad im Skript anpassen)
 3. Last.fm-API-Key direkt in `tag_genres.py` eintragen:
 ```python
 LASTFM_KEY = "dein_api_key"
@@ -85,7 +85,7 @@ Verarbeitete Alben werden in `~/.genre_tagger_done.txt` gespeichert (eine Releas
 ## Limitationen
 - nur FLAC wird unterstützt — kein MP3, Opus etc.
 - die Qualität der Genres hängt von MusicBrainz- und Last.fm-Daten ab — bei weniger bekannten Künstlern kann das Ergebnis lückenhaft sein
-- MusicBrainz und Last.fm haben Rate Limits — bei sehr großen Bibliotheken kann das Script entsprechend lange laufen
+- MusicBrainz und Last.fm haben Rate Limits — bei sehr großen Bibliotheken kann das Skript entsprechend lange laufen
 - Alben ohne MusicBrainz-Release-Group-ID werden nach Ordnerpfad gruppiert, was bei ungewöhnlichen Ordnerstrukturen zu falschen Gruppierungen führen kann
 
 ## Lizenz
