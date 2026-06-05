@@ -2,7 +2,7 @@
 Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert nach einer eigenen Whitelist. Erstellt mithilfe von Anthropic Claude.
 
 ## Hintergrund
-Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres — aber nur wenn die Dateien sauber getaggt sind. Tools wie MusicBrainz Picard schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments. Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch.
+Viele Musik-Player und Streaming-Server wie Navidrome ermöglichen das Filtern und Browsen nach Genres, aber nur wenn die Dateien sauber getaggt sind. Tools wie MusicBrainz Picard schreiben Genres oft als einzelnen Tag mit Trennzeichen (`GENRE=Rock, Metal`), anstatt als separate Vorbis Comments. Außerdem sind die verfügbaren Genres auf MusicBrainz häufig lückenhaft oder zu spezifisch.
 
 Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert sie gegen eine eigene Whitelist und schreibt sie als separate Tags in die Dateien.
 
@@ -110,6 +110,15 @@ Verarbeitete Alben werden in `~/.genre_tagger_done.txt` gespeichert (eine Releas
 - die Qualität der Genres hängt von MusicBrainz- und Last.fm-Daten ab — bei weniger bekannten Künstlern kann das Ergebnis lückenhaft sein
 - MusicBrainz und Last.fm haben Rate Limits — bei sehr großen Bibliotheken kann das Skript entsprechend lange laufen
 - Alben ohne MusicBrainz-Release-Group-ID werden nach Ordnerpfad gruppiert, was bei ungewöhnlichen Ordnerstrukturen zu falschen Gruppierungen führen kann
+
+## Geplante Funktionen
+
+- **Fuzzy-Matching für Genres** – wenn ein gefundenes Genre nicht exakt in der Whitelist steht, aber sehr ähnlich ist (bspw. `Post Punk` statt `Post-Punk`), soll es automatisch auf den Whitelist-Eintrag normalisiert und gespeichert werden
+- **Track-weiser Modus** – optionales Flag (`--per-track`), um Genres pro Track statt pro Album zu vergeben
+- **Unterstützung weiterer Formate** – MP3, Opus etc. neben FLAC
+- **dry-run Modus** – mit `--dry-run` wird angezeigt was geändert würde, ohne tatsächlich in die Dateien zu schreiben
+- **Logging** – Änderungen werden zusätzlich in eine Logdatei geschrieben
+- **interaktiver Modus** – bei Genres, die nicht in der Whitelist stehen, wird nachgefragt, ob sie hinzugefügt werden sollen
 
 ## Lizenz
 [MIT-Lizenz](https://github.com/svetixoxo/flac-genre-tagger/blob/main/LICENSE)
