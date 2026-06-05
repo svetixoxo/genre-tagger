@@ -15,9 +15,9 @@ from collections import defaultdict
 BIBLIOTHEK    = os.path.expanduser("~/Musik/Bibliothek")
 WHITELIST_TXT = os.path.expanduser("~/Musik/Bibliothek/genres_whitelist.txt")
 INDEX_FILE    = os.path.expanduser("~/.genre_tagger_done.txt")
-LASTFM_KEY    = ""  # Last.fm API-Key hier eintragen
+LASTFM_KEY    = "DEIN_API_KEY"  # Last.fm API-Key hier eintragen
 MAX_GENRES    = 5
-FUZZY_CUTOFF  = 0.82  # Ähnlichkeitsschwelle für Fuzzy-Matching (0.0–1.0)
+
 SUPPORTED_EXT = (".flac", ".mp3", ".m4a", ".ogg", ".opus")
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -45,19 +45,17 @@ def save_to_index(path, key):
         f.write(key + "\n")
 
 def fuzzy_match(genre, whitelist):
-    """Gibt den besten Whitelist-Treffer zurück, wenn Ähnlichkeit >= FUZZY_CUTOFF."""
-    from difflib import SequenceMatcher
-    g = genre.strip().lower()
-    best_score = 0
-    best_match = None
+    """Normalisiert Leerzeichen und Bindestriche und sucht einen exakten Whitelist-Treffer.
+    Beispiel: 'hip hop' → 'hip-hop', 'metal core' → 'metalcore'
+    """
+    def normalize(s):
+        return s.lower().replace("-", "").replace(" ", "")
+
+    g_norm = normalize(genre)
     for wl_key, wl_val in whitelist.items():
-        score = SequenceMatcher(None, g, wl_key).ratio()
-        if score > best_score:
-            best_score = score
-            best_match = wl_val
-    if best_score >= FUZZY_CUTOFF:
-        return best_match, best_score
-    return None, best_score
+        if normalize(wl_key) == g_norm:
+            return wl_val
+    return None
 
 def filter_whitelist(genres, whitelist, dry=False):
     seen = set()
@@ -68,10 +66,10 @@ def filter_whitelist(genres, whitelist, dry=False):
             result.append(whitelist[key])
             seen.add(key)
         else:
-            match, score = fuzzy_match(g, whitelist)
+            match = fuzzy_match(g, whitelist)
             if match and match.lower() not in seen:
                 if dry:
-                    print(f"    [fuzzy] '{g}' → '{match}' ({score:.0%})")
+                    print(f"    [fuzzy] '{g}' → '{match}'")
                 result.append(match)
                 seen.add(match.lower())
     return result
