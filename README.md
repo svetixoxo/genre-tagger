@@ -18,7 +18,7 @@ Taggt FLAC-Dateien automatisch mit Genres aus MusicBrainz und Last.fm, gefiltert
 sudo pacman -S python-musicbrainzngs python-pylast python-mutagen
 ```
 
-Zudem wird (für das Fallback) ein kostenloser [Last.fm API-Key](https://www.last.fm/api/account/create) benötigt.
+Zudem wird (für das Fallback) ein kostenloser [Last.fm-API-Key](https://www.last.fm/api/account/create) benötigt.
 
 ## Einrichtung
 
