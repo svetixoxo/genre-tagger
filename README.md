@@ -17,6 +17,7 @@ Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert 
 - `--force`-Flag, um alle Alben unabhängig vom Index neu zu verarbeiten
 - `--dry-run`-Flag, um Änderungen nur anzuzeigen ohne Dateien zu verändern
 - `--per-track`-Flag, um Genres pro Track statt pro Album zu vergeben
+- `--overwrite`-Flag, um bestehende Genres zu ignorieren und alle Genres neu zu holen
 
 ## Unterstützte Formate
 FLAC, MP3 (ID3v2.4), M4A, Ogg, Opus
