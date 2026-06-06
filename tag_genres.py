@@ -234,16 +234,19 @@ def group_files(all_files):
         albums[key].append(filepath)
     return albums
 
-def process_album(files, whitelist, dry=False):
+def process_album(files, whitelist, dry=False, overwrite=False):
     genres, artist, albumartist, album, mb_rgid = read_tags(files[0])
     print(f"  Album: {albumartist or artist} – {album}")
 
-    existing = []
-    for f in files:
-        g, *_ = read_tags(f)
-        for genre in filter_whitelist(g, whitelist):
-            if genre.lower() not in {x.lower() for x in existing}:
-                existing.append(genre)
+    if overwrite:
+        existing = []
+    else:
+        existing = []
+        for f in files:
+            g, *_ = read_tags(f)
+            for genre in filter_whitelist(g, whitelist):
+                if genre.lower() not in {x.lower() for x in existing}:
+                    existing.append(genre)
 
     if len(existing) >= MAX_GENRES:
         print(f"  → Bereits {len(existing)} Genres vorhanden, übersprungen")
@@ -319,6 +322,7 @@ def main():
     force     = "--force"     in sys.argv
     dry       = "--dry-run"   in sys.argv
     per_track = "--per-track" in sys.argv
+    overwrite = "--overwrite" in sys.argv
 
     if dry:
         print("⚠️  dry-run Modus – keine Dateien werden verändert\n")
@@ -375,7 +379,7 @@ def main():
                 skipped += 1
                 continue
             try:
-                n = process_album(files, whitelist, dry)
+                n = process_album(files, whitelist, dry, overwrite)
                 changed += n
                 if not dry:
                     save_to_index(INDEX_FILE, key)
