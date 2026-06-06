@@ -84,7 +84,7 @@ Symphonic Metal
 ```
 
 ## Fuzzy-Matching
-Wenn ein gefundenes Genre nicht exakt in der Whitelist steht, prüft das Skript ob es nach Entfernung von Leerzeichen und Bindestrichen einem Whitelist-Eintrag entspricht. Damit werden gezielt nur Schreibweisenvarianten erkannt – keine falschen Treffer durch zu ähnliche, aber inhaltlich verschiedene Genres.
+Wenn ein gefundenes Genre nicht exakt in der Whitelist steht, prüft das Skript ob es nach Entfernung von Leerzeichen und Bindestrichen einem Whitelist-Eintrag entspricht. Damit werden gezielt nur Schreibweisen erkannt – keine falschen Treffer durch zu ähnliche, aber inhaltlich verschiedene Genres.
 
 Beispiele:
 - `hip hop` → `Hip-Hop`
