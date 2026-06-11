@@ -11,7 +11,7 @@ Dieses Skript löst beides: Es holt Genres aus MusicBrainz und Last.fm, filtert 
 - Quellen: **MusicBrainz** zuerst, dann **Last.fm** als Fallback – erst Album, dann Artist
 - filtert Genres anhand einer selbst definierten **Whitelist**
 - **Fuzzy-Matching** – ähnliche Genres werden automatisch auf den passenden Whitelist-Eintrag normalisiert (z.B. `Post Punk` → `Post-Punk`)
-- schreibt jedes Genre als **separaten Tag** (Vorbis Comment, ID3, etc.)
+- schreibt jedes Genre als **separaten Tag** (Vorbis Comment, ID3 etc.)
 - **überschreibt keine** vorhandenen gültigen Genres – ergänzt nur bis zum konfigurierten Maximum
 - führt einen **Index** bereits verarbeiteter Alben, um diese beim nächsten Durchlauf zu überspringen
 - `--force`-Flag, um alle Alben unabhängig vom Index neu zu verarbeiten
